@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+  <title>Femme Clash — Fighting Game</title>
+  <meta name="description" content="A 2D fighting game. Battle the computer, or create a room and fight a friend on another phone." />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div id="app">
+    <canvas id="game"></canvas>
+
+    <!-- ===== Top HUD (health bars) ===== -->
+    <div id="hud" class="hidden">
+      <div class="fighter-hud left">
+        <div class="pips" id="pips1"></div>
+        <div class="bar"><div class="fill" id="hp1"></div></div>
+        <div class="name" id="name1">RUBY</div>
+      </div>
+      <div class="timer" id="timer">60</div>
+      <div class="fighter-hud right">
+        <div class="pips" id="pips2"></div>
+        <div class="bar"><div class="fill" id="hp2"></div></div>
+        <div class="name" id="name2">JADE</div>
+      </div>
+    </div>
+
+    <!-- centre announce (Round 1 / FIGHT / K.O.) -->
+    <div id="announce" class="announce hidden"></div>
+
+    <!-- ===== Touch controls ===== -->
+    <div id="controls" class="hidden">
+      <div class="pad left-pad" data-side="p1">
+        <button class="ctl move" data-btn="L">◀</button>
+        <button class="ctl move" data-btn="R">▶</button>
+      </div>
+      <div class="pad right-pad" data-side="p1">
+        <button class="ctl jump" data-btn="J">⤒</button>
+        <button class="ctl atk" data-btn="P">👊</button>
+        <button class="ctl atk" data-btn="K">🦵</button>
+        <button class="ctl blk" data-btn="B">🛡</button>
+      </div>
+
+      <!-- second player's controls (only for 2P-on-one-phone) -->
+      <div class="pad left-pad p2only hidden" data-side="p2">
+        <button class="ctl move" data-btn="L">◀</button>
+        <button class="ctl move" data-btn="R">▶</button>
+      </div>
+      <div class="pad right-pad p2only hidden" data-side="p2">
+        <button class="ctl jump" data-btn="J">⤒</button>
+        <button class="ctl atk" data-btn="P">👊</button>
+        <button class="ctl atk" data-btn="K">🦵</button>
+        <button class="ctl blk" data-btn="B">🛡</button>
+      </div>
+    </div>
+
+    <button id="pause-btn" class="pause-btn hidden">II</button>
+
+    <!-- ===== MENU ===== -->
+    <section id="menu" class="screen">
+      <h1 class="title">FEMME<span>CLASH</span></h1>
+      <p class="tag">Two fighters enter. One walks away. 🥊</p>
+      <div class="menu-btns">
+        <button class="mbtn" data-mode="cpu"><b>🤖 vs Computer</b><small>Fight the AI — single player</small></button>
+        <button class="mbtn" data-mode="online"><b>📱 Online (2 Phones)</b><small>Create a room &amp; fight a friend</small></button>
+        <button class="mbtn" data-mode="local"><b>👥 2 Players (1 Phone)</b><small>Share the screen, left vs right</small></button>
+      </div>
+    </section>
+
+    <!-- ===== ONLINE SETUP ===== -->
+    <section id="online" class="screen hidden">
+      <button class="back" data-back>← Back</button>
+      <h2 class="sub-title">Online Battle</h2>
+
+      <div class="online-cards">
+        <div class="ocard">
+          <h3>Create Room</h3>
+          <p>Make a room and share the code with your friend.</p>
+          <button id="create-room" class="obtn">CREATE ROOM</button>
+          <div id="room-info" class="room-info hidden">
+            <span class="lbl">ROOM CODE</span>
+            <div id="room-code" class="code">----</div>
+            <p id="host-status" class="status">Waiting for player 2…</p>
+          </div>
+        </div>
+
+        <div class="ocard">
+          <h3>Join Room</h3>
+          <p>Enter the code your friend shared.</p>
+          <input id="join-code" class="code-input" maxlength="6" placeholder="CODE" autocomplete="off" />
+          <button id="join-room" class="obtn">JOIN</button>
+          <p id="guest-status" class="status"></p>
+        </div>
+      </div>
+      <p class="note">Both phones need internet. If it doesn't connect on your network, try "2 Players (1 Phone)".</p>
+    </section>
+
+    <!-- ===== PAUSE / RESULT ===== -->
+    <section id="pause" class="screen overlay hidden">
+      <h2 class="sub-title" id="pause-title">Paused</h2>
+      <button id="resume" class="obtn">RESUME</button>
+      <button id="quit" class="obtn ghost">QUIT TO MENU</button>
+    </section>
+
+    <section id="result" class="screen overlay hidden">
+      <h2 class="result-title" id="result-title">YOU WIN!</h2>
+      <p id="result-sub" class="result-sub"></p>
+      <button id="rematch" class="obtn">REMATCH</button>
+      <button id="to-menu" class="obtn ghost">MENU</button>
+    </section>
+  </div>
+
+  <script src="https://unpkg.com/peerjs@1.5.4/dist/peerjs.min.js"></script>
+  <script src="game.js"></script>
+  <script src="net.js"></script>
+</body>
+</html>

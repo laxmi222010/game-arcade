@@ -119,6 +119,16 @@ body {
 .bars b:nth-child(3) { width: 64px; animation-delay:.4s; }
 @keyframes slide { 0%,100%{ transform: translateX(0);} 50%{ transform: translateX(10px);} }
 
+/* --- Femme Clash thumb --- */
+.fight .thumb { background: linear-gradient(135deg, rgba(255,61,129,.30), rgba(36,224,255,.30)); }
+.fight:hover { box-shadow: 0 18px 46px rgba(0,0,0,.5), 0 0 30px rgba(255,61,129,.32); }
+.duel { display: flex; align-items: center; gap: 16px; }
+.duel i { width: 34px; height: 58px; border-radius: 13px 13px 8px 8px; display: block; }
+.duel i.r { background: linear-gradient(180deg,#ff8ac0,#ff3d81); box-shadow: 0 0 18px rgba(255,61,129,.6); animation: jab 1.4s ease-in-out infinite; }
+.duel i.j { background: linear-gradient(180deg,#9af2ff,#24e0ff); box-shadow: 0 0 18px rgba(36,224,255,.6); animation: jab 1.4s ease-in-out infinite .7s; }
+.duel b { font-size: 20px; font-weight: 900; color: #fff; text-shadow: 0 0 12px var(--gold); }
+@keyframes jab { 50% { transform: translateY(-6px) scale(1.05); } }
+
 /* card body */
 .body { padding: 18px 18px 20px; display: flex; flex-direction: column; gap: 8px; flex: 1; }
 .body h2 { font-size: clamp(18px, 4vw, 22px); font-weight: 800; }
@@ -132,6 +142,7 @@ body {
 .run .play  { background: linear-gradient(135deg, var(--run1), #6df); box-shadow: 0 0 18px rgba(0,240,255,.5); }
 .quiz .play { background: linear-gradient(135deg, var(--quiz1), #ffb24d); box-shadow: 0 0 18px rgba(255,210,63,.5); }
 .stack .play{ background: linear-gradient(135deg, var(--stk1), #b06dff); box-shadow: 0 0 18px rgba(162,75,255,.5); }
+.fight .play{ background: linear-gradient(135deg, #ff3d81, #24e0ff); color: #fff; box-shadow: 0 0 18px rgba(255,61,129,.5); }
 .card:hover .play { filter: brightness(1.1); }
 
 .foot { margin-top: 34px; font-size: 12px; opacity: .5; letter-spacing: 1px; text-align: center; }
