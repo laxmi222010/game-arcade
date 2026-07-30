@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+  <title>Gravity Flip Runner</title>
+  <meta name="description" content="A neon endless runner where you flip gravity to survive. Built with HTML, CSS & JavaScript." />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div id="game-wrapper">
+    <canvas id="game"></canvas>
+
+    <!-- Shown only on small screens in portrait -->
+    <div id="rotate-hint">↻ Rotate to landscape</div>
+
+    <!-- HUD -->
+    <div id="hud">
+      <div class="hud-item">SCORE <span id="score">0</span></div>
+      <div class="hud-item">BEST <span id="best">0</span></div>
+    </div>
+
+    <!-- Start screen -->
+    <div id="start-screen" class="overlay">
+      <h1 class="title">GRAVITY<br /><span>FLIP</span></h1>
+      <p class="tagline">Flip gravity. Dodge the spikes. Survive.</p>
+      <button id="start-btn" class="btn">PLAY</button>
+      <div class="controls">
+        <p><kbd>SPACE</kbd> / <kbd>↑</kbd> / <span class="tap">TAP</span> &nbsp;—&nbsp; Flip gravity</p>
+        <p><kbd>P</kbd> &nbsp;—&nbsp; Pause</p>
+      </div>
+    </div>
+
+    <!-- Game over screen -->
+    <div id="over-screen" class="overlay hidden">
+      <h2 class="over-title">GAME OVER</h2>
+      <div class="final">
+        <div class="final-item">SCORE<br /><span id="final-score">0</span></div>
+        <div class="final-item">BEST<br /><span id="final-best">0</span></div>
+      </div>
+      <p id="new-best" class="new-best hidden">★ NEW BEST! ★</p>
+      <button id="retry-btn" class="btn">PLAY AGAIN</button>
+    </div>
+
+    <!-- Pause screen -->
+    <div id="pause-screen" class="overlay hidden">
+      <h2 class="over-title">PAUSED</h2>
+      <button id="resume-btn" class="btn">RESUME</button>
+    </div>
+  </div>
+
+  <footer id="credit">Made with 🤍 using HTML • CSS • JavaScript</footer>
+
+  <script src="game.js"></script>
+</body>
+</html>

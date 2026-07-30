@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Quiz Champion — KBC Style Game</title>
+  <meta name="description" content="A KBC-style quiz game. Pick a category (AI, GK, Science & more) and climb the money ladder to ₹1 Crore." />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div id="app">
+
+    <!-- ============ CATEGORY / START SCREEN ============ -->
+    <section id="home" class="screen">
+      <div class="home-inner">
+        <h1 class="brand">QUIZ<span>CHAMPION</span></h1>
+        <p class="brand-sub">Pick a category and climb to <b>₹1 Crore</b> 🏆</p>
+
+        <h2 class="choose">Aap kis subject me khelna chahoge?</h2>
+        <div id="category-grid" class="category-grid"><!-- filled by JS --></div>
+
+        <p class="hint">15 questions · 3 lifelines · 2 safe checkpoints</p>
+      </div>
+    </section>
+
+    <!-- ============ GAME SCREEN ============ -->
+    <section id="game" class="screen hidden">
+      <div class="game-layout">
+
+        <!-- Left: quiz -->
+        <div class="quiz-col">
+          <div class="topbar">
+            <button id="quit-btn" class="pill danger">Quit ✕</button>
+            <div class="cat-tag"><span id="cat-icon">🤖</span> <span id="cat-name">AI</span></div>
+            <div id="timer" class="timer">30</div>
+          </div>
+
+          <div class="lifelines">
+            <button class="lifeline" id="ll-5050"><b>50:50</b></button>
+            <button class="lifeline" id="ll-poll">📊<span>Audience</span></button>
+            <button class="lifeline" id="ll-phone">📞<span>Phone</span></button>
+          </div>
+
+          <div class="prize-strip">
+            Question <span id="q-index">1</span>/15 &nbsp;·&nbsp; Playing for <span id="q-amount">₹1,000</span>
+          </div>
+
+          <div class="question-box">
+            <p id="question-text">Question loads here…</p>
+          </div>
+
+          <div id="options" class="options">
+            <button class="option" data-i="0"><span class="opt-letter">A</span><span class="opt-text"></span></button>
+            <button class="option" data-i="1"><span class="opt-letter">B</span><span class="opt-text"></span></button>
+            <button class="option" data-i="2"><span class="opt-letter">C</span><span class="opt-text"></span></button>
+            <button class="option" data-i="3"><span class="opt-letter">D</span><span class="opt-text"></span></button>
+          </div>
+        </div>
+
+        <!-- Right: money ladder -->
+        <aside class="ladder-col">
+          <ol id="ladder" class="ladder"><!-- filled by JS --></ol>
+        </aside>
+      </div>
+
+      <!-- Popups -->
+      <div id="poll-popup" class="popup hidden">
+        <div class="popup-card">
+          <h3>📊 Audience Poll</h3>
+          <div id="poll-bars" class="poll-bars"></div>
+          <button class="pill" data-close>Close</button>
+        </div>
+      </div>
+
+      <div id="phone-popup" class="popup hidden">
+        <div class="popup-card">
+          <h3>📞 Phone a Friend</h3>
+          <p id="phone-text" class="phone-text"></p>
+          <button class="pill" data-close>Close</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ RESULT SCREEN ============ -->
+    <section id="result" class="screen hidden">
+      <div class="result-inner">
+        <h2 id="result-title">🎉 Congratulations!</h2>
+        <p id="result-sub">You walked away with</p>
+        <div id="result-amount" class="result-amount">₹0</div>
+        <p id="result-detail" class="result-detail"></p>
+        <div class="result-btns">
+          <button id="again-btn" class="pill big">Play Again</button>
+          <button id="home-btn" class="pill big ghost">Change Category</button>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <script src="questions.js"></script>
+  <script src="game.js"></script>
+</body>
+</html>

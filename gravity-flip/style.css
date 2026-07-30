@@ -1,0 +1,266 @@
+/* ===== Gravity Flip Runner — styles ===== */
+
+:root {
+  --bg: #0a0a16;
+  --bg2: #12122a;
+  --neon: #00f0ff;
+  --neon2: #ff2e97;
+  --accent: #ffd23f;
+  --text: #e8f0ff;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html, body {
+  height: 100%;
+  background: radial-gradient(circle at 50% 0%, var(--bg2), var(--bg));
+  color: var(--text);
+  font-family: "Segoe UI", "Trebuchet MS", system-ui, sans-serif;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+}
+
+#game-wrapper {
+  position: relative;
+  width: min(96vw, 900px);
+  aspect-ratio: 16 / 9;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 0 0 2px rgba(0, 240, 255, 0.25),
+              0 0 40px rgba(0, 240, 255, 0.15),
+              0 20px 60px rgba(0, 0, 0, 0.6);
+}
+
+canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  touch-action: none;
+}
+
+/* ===== HUD ===== */
+#hud {
+  position: absolute;
+  top: 14px;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 20px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  font-size: clamp(11px, 2.2vw, 16px);
+  pointer-events: none;
+  text-shadow: 0 0 10px rgba(0, 240, 255, 0.6);
+}
+.hud-item span {
+  color: var(--accent);
+  margin-left: 6px;
+}
+
+/* ===== Overlays ===== */
+.overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  text-align: center;
+  padding: 20px;
+  background: rgba(6, 6, 20, 0.72);
+  backdrop-filter: blur(6px);
+  z-index: 5;
+  animation: fade 0.35s ease;
+}
+.hidden { display: none !important; }
+
+@keyframes fade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.title {
+  font-size: clamp(38px, 10vw, 84px);
+  line-height: 0.92;
+  font-weight: 900;
+  letter-spacing: 4px;
+  color: var(--neon);
+  text-shadow: 0 0 20px rgba(0, 240, 255, 0.8), 0 0 42px rgba(0, 240, 255, 0.4);
+}
+.title span {
+  color: var(--neon2);
+  text-shadow: 0 0 20px rgba(255, 46, 151, 0.9), 0 0 42px rgba(255, 46, 151, 0.4);
+}
+
+.tagline {
+  font-size: clamp(13px, 2.6vw, 18px);
+  opacity: 0.85;
+  letter-spacing: 1px;
+}
+
+.over-title {
+  font-size: clamp(30px, 7vw, 56px);
+  font-weight: 900;
+  letter-spacing: 3px;
+  color: var(--neon2);
+  text-shadow: 0 0 20px rgba(255, 46, 151, 0.8);
+}
+
+.final {
+  display: flex;
+  gap: 40px;
+}
+.final-item {
+  font-size: clamp(11px, 2.4vw, 15px);
+  letter-spacing: 2px;
+  opacity: 0.8;
+}
+.final-item span {
+  display: block;
+  margin-top: 6px;
+  font-size: clamp(28px, 7vw, 46px);
+  font-weight: 900;
+  color: var(--accent);
+  opacity: 1;
+  text-shadow: 0 0 16px rgba(255, 210, 63, 0.6);
+}
+
+.new-best {
+  color: var(--accent);
+  font-weight: 800;
+  letter-spacing: 3px;
+  animation: pulse 0.8s ease infinite alternate;
+}
+@keyframes pulse {
+  from { transform: scale(1); opacity: 0.7; }
+  to { transform: scale(1.12); opacity: 1; }
+}
+
+/* ===== Button ===== */
+.btn {
+  margin-top: 6px;
+  padding: 14px 42px;
+  font-size: clamp(15px, 3vw, 20px);
+  font-weight: 800;
+  letter-spacing: 3px;
+  color: var(--bg);
+  background: linear-gradient(135deg, var(--neon), var(--neon2));
+  border: none;
+  border-radius: 999px;
+  cursor: pointer;
+  box-shadow: 0 0 24px rgba(0, 240, 255, 0.5);
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
+}
+.btn:hover { transform: translateY(-2px) scale(1.04); box-shadow: 0 0 34px rgba(255, 46, 151, 0.6); }
+.btn:active { transform: scale(0.97); }
+
+/* ===== Controls hint ===== */
+.controls {
+  margin-top: 10px;
+  font-size: clamp(11px, 2.2vw, 14px);
+  opacity: 0.75;
+  line-height: 1.9;
+}
+kbd {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.08);
+  font-family: monospace;
+  font-size: 0.9em;
+}
+.tap {
+  padding: 2px 8px;
+  border-radius: 6px;
+  border: 1px solid rgba(255, 210, 63, 0.5);
+  color: var(--accent);
+}
+
+#credit {
+  margin-top: 16px;
+  font-size: 12px;
+  opacity: 0.45;
+  letter-spacing: 1px;
+}
+
+/* Rotate hint — hidden by default, shown on small portrait screens */
+#rotate-hint {
+  position: absolute;
+  top: calc(env(safe-area-inset-top, 0px) + 48px);   /* sits below the HUD row */
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 6;
+  display: none;
+  padding: 6px 14px;
+  border-radius: 999px;
+  background: rgba(255, 210, 63, 0.14);
+  border: 1px solid rgba(255, 210, 63, 0.5);
+  color: var(--accent);
+  font-size: 12px;
+  letter-spacing: 0.5px;
+  max-width: calc(100vw - 24px);
+  text-align: center;
+  pointer-events: none;          /* never block taps on the game */
+  animation: pulse 1.4s ease infinite alternate;
+}
+
+/* ===================================================================
+   MOBILE / SMALL SCREENS — fill the whole viewport instead of a card.
+   Covers narrow screens, short landscape phones, and touch devices.
+   =================================================================== */
+@media (max-width: 820px), (max-height: 520px), (pointer: coarse) {
+  body {
+    padding: 0;
+  }
+
+  #game-wrapper {
+    width: 100vw;
+    height: 100vh;            /* fallback */
+    height: 100dvh;           /* dynamic viewport — accounts for mobile UI */
+    max-width: none;
+    aspect-ratio: auto;
+    border-radius: 0;
+    box-shadow: none;
+  }
+
+  #hud {
+    top: max(12px, env(safe-area-inset-top));
+    padding-left: max(18px, env(safe-area-inset-left));
+    padding-right: max(18px, env(safe-area-inset-right));
+  }
+
+  #credit {
+    display: none;           /* save space on phones */
+  }
+}
+
+/* Show the rotate hint only when a small screen is held in portrait */
+@media (max-width: 820px) and (orientation: portrait) {
+  #rotate-hint {
+    display: block;
+  }
+}
+
+/* Short screens (landscape phones) — shrink the menu so nothing clips */
+@media (max-height: 520px) {
+  .overlay { gap: 10px; padding: 12px; }
+  .title { font-size: clamp(26px, 13vh, 56px); letter-spacing: 2px; }
+  .tagline { font-size: 14px; }
+  .over-title { font-size: clamp(24px, 11vh, 44px); }
+  .final { gap: 28px; }
+  .btn { padding: 10px 32px; }
+  .controls { margin-top: 4px; line-height: 1.6; }
+}

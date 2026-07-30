@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+  <title>Neon Stack — Tower Builder</title>
+  <meta name="description" content="A satisfying one-tap neon tower-stacking game. Stack the blocks perfectly and climb as high as you can!" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div id="wrap">
+    <canvas id="game"></canvas>
+
+    <!-- HUD -->
+    <div id="hud">
+      <div id="score">0</div>
+      <div id="best">BEST 0</div>
+    </div>
+
+    <!-- combo flash -->
+    <div id="combo" class="combo hidden"></div>
+
+    <!-- Start screen -->
+    <div id="start" class="overlay">
+      <h1 class="title">NEON<span>STACK</span></h1>
+      <p class="tag">Tap to drop the block.<br/>Stack them perfectly & climb!</p>
+      <button id="play" class="btn">TAP TO PLAY</button>
+      <p class="mini">Perfect stacks keep your width &amp; build combos ✨</p>
+    </div>
+
+    <!-- Game over -->
+    <div id="over" class="overlay hidden">
+      <h2 class="over-title">TOWER TOPPLED</h2>
+      <div class="scores">
+        <div><span class="lbl">HEIGHT</span><span id="final" class="big">0</span></div>
+        <div><span class="lbl">BEST</span><span id="final-best" class="big">0</span></div>
+      </div>
+      <p id="new-best" class="new-best hidden">★ NEW RECORD ★</p>
+      <button id="retry" class="btn">PLAY AGAIN</button>
+    </div>
+  </div>
+
+  <script src="game.js"></script>
+</body>
+</html>
